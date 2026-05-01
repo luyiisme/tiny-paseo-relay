@@ -1,0 +1,21 @@
+[Unit]
+Description=Paseo Daemon
+After=network-online.target paseo-relay.service
+Wants=network-online.target
+Requires=paseo-relay.service
+
+[Service]
+Type=simple
+Environment=HOME=%h
+Environment=LD_LIBRARY_PATH=%h/lib
+Environment=PASEO_RELAY_ENDPOINT=<YOUR_HOST_IP>:39217
+Environment=PATH=%h/node/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/node/bin/paseo daemon start --foreground
+Restart=on-failure
+RestartSec=5
+
+StandardOutput=append:%h/daemon.log
+StandardError=append:%h/daemon.log
+
+[Install]
+WantedBy=default.target
