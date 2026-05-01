@@ -1,0 +1,18 @@
+[Unit]
+Description=Paseo Tiny Relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/tiny-paseo-relay
+Environment=PATH=%h/node/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/node/bin/node dist/index.js --port 39217 --host <YOUR_HOST_IP> --log %h/relay.log
+Restart=on-failure
+RestartSec=3
+
+StandardOutput=append:%h/relay-stdout.log
+StandardError=append:%h/relay-stdout.log
+
+[Install]
+WantedBy=default.target

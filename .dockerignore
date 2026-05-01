@@ -1,0 +1,14 @@
+# deps
+node_modules/
+
+# build output
+dist/
+
+# IDE / editor
+.vscode/
+.idea/
+
+# misc
+.git/
+.gitignore
+*.md
